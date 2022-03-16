@@ -1,5 +1,5 @@
 import Person from '../../../models/person.model';
-import { AppError } from '../../../types/app-error';
+import { AppError } from '../../../types/app-error.type';
 import { Action } from 'redux';
 
 export interface PeopleState {

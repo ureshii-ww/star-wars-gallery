@@ -4,7 +4,7 @@ import {
   LoadPeopleSuccessAction,
   PeopleActionsEnum,
 } from './types';
-import { AppError } from '../../../types/app-error';
+import { AppError } from '../../../types/app-error.type';
 import Person from '../../../models/person.model';
 
 export const loadPeople = (page: number, search: string): LoadPeopleAction => ({
