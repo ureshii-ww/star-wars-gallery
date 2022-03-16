@@ -17,7 +17,6 @@ export enum PeopleActionsEnum {
 
 export interface LoadPeopleAction {
   type: PeopleActionsEnum.LOAD_PEOPLE;
-  // payload: Required<Pick<PeopleState, 'page' | 'search'>>
   payload: Pick<PeopleState, 'page' | 'search'>;
 }
 
