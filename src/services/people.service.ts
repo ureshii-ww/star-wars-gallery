@@ -1,13 +1,14 @@
 import api from '../api';
+import Person from '../models/person.model';
 
 const PEOPLE_PREFIX = 'people/';
 
 const peopleService = {
   getAll: () => {
-    return api.get(PEOPLE_PREFIX);
+    return api.get<Person[]>(PEOPLE_PREFIX);
   },
   getOne: (id: string) => {
-    return api.get(`${PEOPLE_PREFIX}${id}`);
+    return api.get<Person>(`${PEOPLE_PREFIX}${id}`);
   },
 };
 
