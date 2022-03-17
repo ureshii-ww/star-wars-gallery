@@ -42,8 +42,8 @@ describe('loadPeopleSaga', () => {
         ...initialStateStub,
         people: {
           ...initialStateStub.people,
-          data: [personStub]
-        }
+          data: [personStub],
+        },
       })
       .run();
   });
@@ -65,8 +65,8 @@ describe('loadPeopleSaga', () => {
         ...initialStateStub,
         people: {
           ...initialStateStub.people,
-          error: 'error'
-        }
+          error: 'error',
+        },
       })
       .run();
   });

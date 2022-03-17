@@ -2,7 +2,6 @@ import { fork, takeEvery, call, put } from 'redux-saga/effects';
 import { LoadPeopleAction, PeopleActionsEnum } from '../../reducers/people/types';
 import PeopleService from '../../../services/people.service';
 import { loadPeopleFailure, loadPeopleSuccess } from '../../reducers/people/actions';
-import Person from '../../../models/person.model';
 
 export function* watchLoadPeople() {
   yield takeEvery(PeopleActionsEnum.LOAD_PEOPLE, loadPeopleSaga);

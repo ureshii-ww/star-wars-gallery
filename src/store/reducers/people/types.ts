@@ -1,6 +1,5 @@
 import Person from '../../../models/person.model';
 import { AppError } from '../../../types/app-error.type';
-import { Action } from 'redux';
 
 export interface PeopleState {
   page: number;
@@ -16,7 +15,7 @@ export enum PeopleActionsEnum {
   LOAD_PEOPLE_FAILURE = 'LOAD_PEOPLE_FAILURE',
 }
 
-export interface LoadPeopleAction extends Action{
+export interface LoadPeopleAction{
   type: PeopleActionsEnum.LOAD_PEOPLE;
   payload: Pick<PeopleState, 'page' | 'search'>;
 }
@@ -28,7 +27,7 @@ export interface LoadPeopleSuccessAction {
 
 export interface LoadPeopleFailureAction {
   type: PeopleActionsEnum.LOAD_PEOPLE_FAILURE;
-  payload: AppError;
+  payload: AppError | string;
 }
 
 export type PeopleAction = LoadPeopleAction | LoadPeopleSuccessAction | LoadPeopleFailureAction;
