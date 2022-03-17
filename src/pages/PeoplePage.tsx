@@ -1,9 +1,9 @@
-import React from 'react';
+import PeopleContainer from '../components/containers/PeopleContainer';
 
 const PeoplePage = () => {
   return (
     <div>
-      People
+      <PeopleContainer />
     </div>
   );
 };
