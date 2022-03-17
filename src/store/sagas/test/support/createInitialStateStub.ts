@@ -7,7 +7,12 @@ export default function createInitialStateStub(): RootState {
       search: '',
       loading: false,
       error: null,
-      data: null
-    }
-  }
+      data: null,
+    },
+    person: {
+      loading: false,
+      data: null,
+      error: null,
+    },
+  };
 }
