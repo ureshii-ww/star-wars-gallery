@@ -1,9 +1,10 @@
 import { PersonAction, PersonActionsEnum, PersonState } from './types';
 
-const initialState: PersonState = {
+export const initialState: PersonState = {
   loading: false,
   data: null,
   error: null,
+  id: null,
 };
 
 export default function personReducer(state = initialState, action: PersonAction) {
@@ -12,6 +13,7 @@ export default function personReducer(state = initialState, action: PersonAction
       return {
         ...state,
         loading: true,
+        id: action.payload.id
       };
     }
 

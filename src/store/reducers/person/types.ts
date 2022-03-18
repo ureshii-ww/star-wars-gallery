@@ -5,6 +5,7 @@ export interface PersonState {
   loading: boolean;
   data: Person | null;
   error: AppError | null;
+  id: string | null;
 }
 
 export enum PersonActionsEnum {

@@ -1,4 +1,4 @@
-import Person from '../../../../models/person.model';
+import Person from '../../models/person.model';
 
 export const personStub: Person = {
   name: 'Stub',

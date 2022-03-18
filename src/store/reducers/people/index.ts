@@ -1,6 +1,6 @@
 import { PeopleAction, PeopleActionsEnum, PeopleState } from './types';
 
-const initialState: PeopleState = {
+export const initialState: PeopleState = {
   page: 1,
   search: '',
   loading: false,

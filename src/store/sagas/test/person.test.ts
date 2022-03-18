@@ -2,11 +2,11 @@ import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { loadPersonSaga, watchLoadPerson } from '../person';
 import { LoadPersonAction, PersonActionsEnum } from '../../reducers/person/types';
 import rootReducer from '../../reducers';
-import createInitialStateStub from './support/createInitialStateStub';
+import createInitialStateStub from '../../../tests/support/createInitialStateStub';
 import { call } from 'redux-saga-test-plan/matchers';
 import PersonService from '../../../services/person.service';
-import createAxiosResponseStub from './support/createAxiosResponseStub';
-import { personStub } from './stubs/person.stub';
+import createAxiosResponseStub from '../../../tests/support/createAxiosResponseStub';
+import { personStub } from '../../../tests/stubs/person.stub';
 import { throwError } from 'redux-saga-test-plan/providers';
 
 describe('watchLoadPerson', () => {

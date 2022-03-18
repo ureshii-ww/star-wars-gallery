@@ -1,4 +1,4 @@
-import DataList from '../../../../models/data-list.model';
+import DataList from '../../models/data-list.model';
 
 export default function createDataListStub(results: any): DataList<any> {
   return {
