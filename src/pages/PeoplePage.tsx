@@ -1,4 +1,4 @@
-import PeopleContainer from '../components/containers/PeopleContainer';
+import PeopleContainer from '../components/containers/PeopleContainer/PeopleContainer';
 
 const PeoplePage = () => {
   return (

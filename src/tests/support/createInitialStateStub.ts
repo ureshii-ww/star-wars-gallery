@@ -13,6 +13,7 @@ export default function createInitialStateStub(): RootState {
       loading: false,
       data: null,
       error: null,
+      id: null
     },
   };
 }
