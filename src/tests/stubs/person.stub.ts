@@ -10,7 +10,7 @@ export const personStub: Person = {
   mass: 'Stub',
   skin_color: 'Stub',
   homeworld: 'Stub',
-  films: ['Stub'],
+  films: ['https://swapi.dev/api/films/1/'],
   vehicles: ['Stub'],
   species: ['Stub'],
   starships: ['Stub'],
