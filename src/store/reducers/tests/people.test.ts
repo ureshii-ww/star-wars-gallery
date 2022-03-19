@@ -1,6 +1,6 @@
 import peopleReducer, { initialState } from '../people';
 import { PeopleAction, PeopleState } from '../people/types';
-import { loadPeople, loadPeopleFailure, loadPeopleSuccess } from '../people/actions';
+import { loadPeople, loadPeopleFailure, loadPeopleSuccess, resetPeople } from '../people/actions';
 import { personStub } from '../../../tests/stubs/person.stub';
 import createDataListStub from '../../../tests/support/createDataListStub';
 
@@ -28,23 +28,23 @@ describe('people reducer', () => {
       count: dataList.count,
       next: dataList.next,
       previous: dataList.previous,
-      data: dataList.results
+      data: dataList.results,
     });
   });
-  
+
   it('handles the loadPeopleSuccess action if data was not empty', () => {
     const dataList = createDataListStub([personStub]);
     const state: PeopleState = {
       ...initialState,
-      data: [personStub]
-    }
+      data: [personStub],
+    };
     expect(peopleReducer(state, loadPeopleSuccess(dataList))).toEqual({
       ...initialState,
       loading: false,
       count: dataList.count,
       next: dataList.next,
       previous: dataList.previous,
-      data: [personStub, ...dataList.results]
+      data: [personStub, ...dataList.results],
     });
   });
 
@@ -52,6 +52,22 @@ describe('people reducer', () => {
     expect(peopleReducer(initialState, loadPeopleFailure('error'))).toEqual({
       ...initialState,
       error: 'error',
+    });
+  });
+
+  it('handles the resetPeople action', () => {
+    const state: PeopleState = {
+      count: 80,
+      next: 'next',
+      previous: 'previous',
+      search: 'search',
+      page: 10,
+      loading: true,
+      error: 'error',
+      data: [personStub],
+    };
+    expect(peopleReducer(state, resetPeople())).toEqual({
+      ...initialState,
     });
   });
 });

@@ -17,9 +17,10 @@ export enum PeopleActionsEnum {
   LOAD_PEOPLE = 'LOAD_PEOPLE',
   LOAD_PEOPLE_SUCCESS = 'LOAD_PEOPLE_SUCCESS',
   LOAD_PEOPLE_FAILURE = 'LOAD_PEOPLE_FAILURE',
+  RESET_PEOPLE = 'RESET_PEOPLE',
 }
 
-export interface LoadPeopleAction{
+export interface LoadPeopleAction {
   type: PeopleActionsEnum.LOAD_PEOPLE;
   payload: Pick<PeopleState, 'page' | 'search'>;
 }
@@ -34,4 +35,12 @@ export interface LoadPeopleFailureAction {
   payload: AppError | string;
 }
 
-export type PeopleAction = LoadPeopleAction | LoadPeopleSuccessAction | LoadPeopleFailureAction;
+export interface ResetPeopleAction {
+  type: PeopleActionsEnum.RESET_PEOPLE;
+}
+
+export type PeopleAction =
+  | LoadPeopleAction
+  | LoadPeopleSuccessAction
+  | LoadPeopleFailureAction
+  | ResetPeopleAction;

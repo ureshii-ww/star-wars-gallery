@@ -1,4 +1,4 @@
-import { loadPeopleSaga, watchLoadPeople } from '../people';
+import { loadPeopleSaga, resetPeopleSaga, watchLoadPeople, watchResetPeople } from '../people';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import { LoadPeopleAction, PeopleActionsEnum } from '../../reducers/people/types';
 import { personStub } from '../../../tests/stubs/person.stub';
@@ -18,6 +18,16 @@ describe('watchLoadPeople', () => {
     testSaga(watchLoadPeople)
       .next()
       .takeEvery(PeopleActionsEnum.LOAD_PEOPLE, loadPeopleSaga)
+      .next()
+      .isDone();
+  });
+});
+
+describe('watchPeopleReset', () => {
+  it('takes every resetPeople action and spawns watchPeopleSaga', () => {
+    testSaga(watchResetPeople)
+      .next()
+      .takeEvery(PeopleActionsEnum.RESET_PEOPLE, resetPeopleSaga)
       .next()
       .isDone();
   });
@@ -47,7 +57,7 @@ describe('loadPeopleSaga', () => {
           count: responseStub.data.count,
           next: responseStub.data.next,
           previous: responseStub.data.previous,
-          data: responseStub.data.results
+          data: responseStub.data.results,
         },
       })
       .run();

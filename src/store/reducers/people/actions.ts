@@ -3,6 +3,7 @@ import {
   LoadPeopleFailureAction,
   LoadPeopleSuccessAction,
   PeopleActionsEnum,
+  ResetPeopleAction,
 } from './types';
 import { AppError } from '../../../types/app-error.type';
 import Person from '../../../models/person.model';
@@ -25,3 +26,7 @@ export const loadPeopleFailure = (error: AppError): LoadPeopleFailureAction => (
   type: PeopleActionsEnum.LOAD_PEOPLE_FAILURE,
   payload: error,
 });
+
+export const resetPeople = (): ResetPeopleAction => ({
+  type: PeopleActionsEnum.RESET_PEOPLE
+})

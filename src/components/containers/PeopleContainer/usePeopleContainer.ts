@@ -1,7 +1,7 @@
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import useAppSelector from '../../../hooks/useAppSelector';
 import { useEffect } from 'react';
-import { loadPeople } from '../../../store/reducers/people/actions';
+import { loadPeople, resetPeople } from '../../../store/reducers/people/actions';
 import { peopleStateSelector } from '../../../store/selectors/people.selectors';
 import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
 
@@ -11,7 +11,7 @@ const usePeopleContainer = () => {
   const { triggerRef, shouldLoad } = useInfiniteScroll();
 
   useEffect(() => {
-    dispatch(loadPeople(page, search));
+    dispatch(resetPeople());
   }, []);
 
   useEffect(() => {

@@ -42,6 +42,9 @@ export default function peopleReducer(state = initialState, action: PeopleAction
       };
     }
 
+    case PeopleActionsEnum.RESET_PEOPLE:
+      return initialState;
+
     default:
       return state;
   }
