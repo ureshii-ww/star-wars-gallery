@@ -1,19 +1,27 @@
 import usePeopleContainer from './usePeopleContainer';
 import PersonCard from '../../UI/PersonCard/PersonCard';
+import { Fragment } from 'react';
 
 const PeopleContainer = () => {
-  const { data, loading, page, search } = usePeopleContainer();
+  const { data, search, loading, triggerRef, next } = usePeopleContainer();
 
   return (
     <div>
-      {loading || !data ? (
+      {!data ? (
         <div>Loading...</div>
       ) : (
-        <div>
-          {data.map(person => (
-            <PersonCard name={person.name} films={person.films} url={person.url} />
-          ))}
-        </div>
+        <Fragment>
+          <div>
+            {data.map(person => (
+              <PersonCard key={`person-card-${person.name}`} name={person.name} films={person.films} url={person.url} />
+            ))}
+          </div>
+          <div>
+            {next && !loading && <div ref={triggerRef} />}
+            {next && <div>Loader...</div>}
+          </div>
+          
+        </Fragment>
       )}
     </div>
   );

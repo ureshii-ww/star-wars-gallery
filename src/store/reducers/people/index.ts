@@ -22,7 +22,7 @@ export default function peopleReducer(state = initialState, action: PeopleAction
         search,
       };
     }
-    
+
     case PeopleActionsEnum.LOAD_PEOPLE_SUCCESS: {
       return {
         ...state,
@@ -30,7 +30,7 @@ export default function peopleReducer(state = initialState, action: PeopleAction
         count: action.payload.count,
         next: action.payload.next,
         previous: action.payload.previous,
-        data: action.payload.results,
+        data: state.data ? [...state.data, ...action.payload.results] : action.payload.results,
       };
     }
 
@@ -41,7 +41,7 @@ export default function peopleReducer(state = initialState, action: PeopleAction
         error: action.payload,
       };
     }
-    
+
     default:
       return state;
   }
