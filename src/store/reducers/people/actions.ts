@@ -4,6 +4,7 @@ import {
   LoadPeopleSuccessAction,
   PeopleActionsEnum,
   ResetPeopleAction,
+  SearchPeopleAction,
 } from './types';
 import { AppError } from '../../../types/app-error.type';
 import Person from '../../../models/person.model';
@@ -27,6 +28,11 @@ export const loadPeopleFailure = (error: AppError): LoadPeopleFailureAction => (
   payload: error,
 });
 
+export const searchPeople = (search: string): SearchPeopleAction => ({
+  type: PeopleActionsEnum.SEARCH_PEOPLE,
+  payload: search,
+});
+
 export const resetPeople = (): ResetPeopleAction => ({
-  type: PeopleActionsEnum.RESET_PEOPLE
-})
+  type: PeopleActionsEnum.RESET_PEOPLE,
+});

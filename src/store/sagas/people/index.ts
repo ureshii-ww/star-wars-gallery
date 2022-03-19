@@ -1,11 +1,15 @@
-import { fork, takeEvery, call, put } from 'redux-saga/effects';
-import { LoadPeopleAction, PeopleActionsEnum } from '../../reducers/people/types';
+import { fork, takeEvery, debounce, call, put } from 'redux-saga/effects';
+import { LoadPeopleAction, PeopleActionsEnum, SearchPeopleAction } from '../../reducers/people/types';
 import PeopleService from '../../../services/people.service';
 import { loadPeople, loadPeopleFailure, loadPeopleSuccess } from '../../reducers/people/actions';
 import { initialState } from '../../reducers/people';
 
 export function* watchLoadPeople() {
   yield takeEvery(PeopleActionsEnum.LOAD_PEOPLE, loadPeopleSaga);
+}
+
+export function* debounceSearchPeople() {
+  yield debounce(800, PeopleActionsEnum.SEARCH_PEOPLE, searchPeopleSaga)
 }
 
 export function* watchResetPeople() {
@@ -28,6 +32,10 @@ export function* loadPeopleSaga(action: LoadPeopleAction) {
   }
 }
 
+export function* searchPeopleSaga(action: SearchPeopleAction) {
+  yield put(loadPeople(1, action.payload));
+}
+
 export function* resetPeopleSaga() {
   yield put(loadPeople(initialState.page, initialState.search));
 }
@@ -35,4 +43,5 @@ export function* resetPeopleSaga() {
 export default function* peopleSaga() {
   yield fork(watchLoadPeople);
   yield fork(watchResetPeople);
+  yield fork(debounceSearchPeople);
 }

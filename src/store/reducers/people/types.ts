@@ -18,6 +18,7 @@ export enum PeopleActionsEnum {
   LOAD_PEOPLE_SUCCESS = 'LOAD_PEOPLE_SUCCESS',
   LOAD_PEOPLE_FAILURE = 'LOAD_PEOPLE_FAILURE',
   RESET_PEOPLE = 'RESET_PEOPLE',
+  SEARCH_PEOPLE = 'SEARCH_PEOPLE',
 }
 
 export interface LoadPeopleAction {
@@ -39,8 +40,14 @@ export interface ResetPeopleAction {
   type: PeopleActionsEnum.RESET_PEOPLE;
 }
 
+export interface SearchPeopleAction {
+  type: PeopleActionsEnum.SEARCH_PEOPLE;
+  payload: string;
+}
+
 export type PeopleAction =
   | LoadPeopleAction
   | LoadPeopleSuccessAction
   | LoadPeopleFailureAction
-  | ResetPeopleAction;
+  | ResetPeopleAction
+  | SearchPeopleAction;

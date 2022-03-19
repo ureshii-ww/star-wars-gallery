@@ -1,6 +1,12 @@
 import peopleReducer, { initialState } from '../people';
 import { PeopleAction, PeopleState } from '../people/types';
-import { loadPeople, loadPeopleFailure, loadPeopleSuccess, resetPeople } from '../people/actions';
+import {
+  loadPeople,
+  loadPeopleFailure,
+  loadPeopleSuccess,
+  resetPeople,
+  searchPeople,
+} from '../people/actions';
 import { personStub } from '../../../tests/stubs/person.stub';
 import createDataListStub from '../../../tests/support/createDataListStub';
 
@@ -52,6 +58,18 @@ describe('people reducer', () => {
     expect(peopleReducer(initialState, loadPeopleFailure('error'))).toEqual({
       ...initialState,
       error: 'error',
+    });
+  });
+
+  it('handles the searchPeople action', () => {
+    const state: PeopleState = {
+      ...initialState,
+      data: [personStub],
+    };
+    expect(peopleReducer(state, searchPeople('search'))).toEqual({
+      ...initialState,
+      search: 'search',
+      data: null,
     });
   });
 

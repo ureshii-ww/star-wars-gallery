@@ -1,6 +1,17 @@
-import { loadPeopleSaga, resetPeopleSaga, watchLoadPeople, watchResetPeople } from '../people';
+import {
+  debounceSearchPeople,
+  loadPeopleSaga,
+  resetPeopleSaga,
+  searchPeopleSaga,
+  watchLoadPeople,
+  watchResetPeople,
+} from '../people';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
-import { LoadPeopleAction, PeopleActionsEnum } from '../../reducers/people/types';
+import {
+  LoadPeopleAction,
+  PeopleActionsEnum,
+  SearchPeopleAction,
+} from '../../reducers/people/types';
 import { personStub } from '../../../tests/stubs/person.stub';
 import { call } from 'redux-saga-test-plan/matchers';
 import PeopleService from '../../../services/people.service';
@@ -12,12 +23,25 @@ import createInitialStateStub from '../../../tests/support/createInitialStateStu
 import { throwError } from 'redux-saga-test-plan/providers';
 import DataList from '../../../models/data-list.model';
 import Person from '../../../models/person.model';
+import { debounce } from 'redux-saga/effects';
+import { loadPeople } from '../../reducers/people/actions';
+import { initialState } from '../../reducers/people';
 
 describe('watchLoadPeople', () => {
   it('takes every loadPeople and spawns loadPeopleSaga', () => {
     testSaga(watchLoadPeople)
       .next()
       .takeEvery(PeopleActionsEnum.LOAD_PEOPLE, loadPeopleSaga)
+      .next()
+      .isDone();
+  });
+});
+
+describe('debounceSearchPeople', () => {
+  it('takes every searchPeople action and spawns searchPeopleSaga after 800ms', () => {
+    testSaga(debounceSearchPeople)
+      .next()
+      .is(debounce(800, PeopleActionsEnum.SEARCH_PEOPLE, searchPeopleSaga))
       .next()
       .isDone();
   });
@@ -84,5 +108,30 @@ describe('loadPeopleSaga', () => {
         },
       })
       .run();
+  });
+});
+
+describe('searchPeopleSaga', () => {
+  const searchPeopleActionStub: SearchPeopleAction = {
+    type: PeopleActionsEnum.SEARCH_PEOPLE,
+    payload: 'search',
+  };
+
+  it('puts the loadPeople action with page one and action payload', () => {
+    testSaga(searchPeopleSaga, searchPeopleActionStub)
+      .next()
+      .put(loadPeople(1, searchPeopleActionStub.payload))
+      .next()
+      .isDone();
+  });
+});
+
+describe('reset peopleSaga', () => {
+  it('puts the loadPeople action with the page and search fields of initialState', () => {
+    testSaga(resetPeopleSaga)
+      .next()
+      .put(loadPeople(initialState.page, initialState.search))
+      .next()
+      .isDone();
   });
 });

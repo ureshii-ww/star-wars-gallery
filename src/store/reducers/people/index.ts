@@ -42,6 +42,14 @@ export default function peopleReducer(state = initialState, action: PeopleAction
       };
     }
 
+    case PeopleActionsEnum.SEARCH_PEOPLE: {
+      return {
+        ...state,
+        search: action.payload,
+        data: null,
+      };
+    }
+
     case PeopleActionsEnum.RESET_PEOPLE:
       return initialState;
 
