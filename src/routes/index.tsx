@@ -2,6 +2,7 @@ import { RouteObject, Navigate } from 'react-router-dom';
 import RouteNames from './route-names.enum';
 import PeoplePage from '../pages/PeoplePage';
 import MainPage from '../pages/MainPage';
+import PersonPage from '../pages/PersonPage';
 
 const routesList: RouteObject[] = [
   {
@@ -16,6 +17,10 @@ const routesList: RouteObject[] = [
     path: RouteNames.PEOPLE,
     element: <PeoplePage />,
   },
+  {
+    path: RouteNames.PERSON,
+    element: <PersonPage />
+  }
 ];
 
 export default routesList;

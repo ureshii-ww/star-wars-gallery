@@ -1,6 +1,7 @@
 enum RouteNames {
   PEOPLE = '/people',
-  MAIN = '/main'
+  MAIN = '/main',
+  PERSON = '/person/:id'
 }
 
 export default RouteNames;

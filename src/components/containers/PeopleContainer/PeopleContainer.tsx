@@ -20,7 +20,6 @@ const PeopleContainer = () => {
             {next && !loading && <div ref={triggerRef} />}
             {next && <div>Loader...</div>}
           </div>
-          
         </Fragment>
       )}
     </div>
