@@ -10,6 +10,8 @@ import rootReducer from '../../reducers';
 import { RootState } from '../../index';
 import createInitialStateStub from '../../../tests/support/createInitialStateStub';
 import { throwError } from 'redux-saga-test-plan/providers';
+import DataList from '../../../models/data-list.model';
+import Person from '../../../models/person.model';
 
 describe('watchLoadPeople', () => {
   it('takes every loadPeople and spawns loadPeopleSaga', () => {
@@ -31,7 +33,7 @@ describe('loadPeopleSaga', () => {
   };
 
   const initialStateStub = createInitialStateStub();
-  const responseStub = createAxiosResponseStub(createDataListStub([personStub]));
+  const responseStub = createAxiosResponseStub<DataList<Person>>(createDataListStub([personStub]));
 
   it('puts an loadPeopleSuccessAction after a successful api call', async () => {
     return expectSaga(loadPeopleSaga, loadPeopleActionStub)
@@ -42,7 +44,10 @@ describe('loadPeopleSaga', () => {
         ...initialStateStub,
         people: {
           ...initialStateStub.people,
-          data: [personStub],
+          count: responseStub.data.count,
+          next: responseStub.data.next,
+          previous: responseStub.data.previous,
+          data: responseStub.data.results
         },
       })
       .run();

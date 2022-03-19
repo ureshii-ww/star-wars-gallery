@@ -3,6 +3,9 @@ import { PeopleAction, PeopleActionsEnum, PeopleState } from './types';
 export const initialState: PeopleState = {
   page: 1,
   search: '',
+  count: 0,
+  next: null,
+  previous: null,
   loading: false,
   error: null,
   data: null,
@@ -24,7 +27,10 @@ export default function peopleReducer(state = initialState, action: PeopleAction
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        count: action.payload.count,
+        next: action.payload.next,
+        previous: action.payload.previous,
+        data: action.payload.results,
       };
     }
 

@@ -1,18 +1,20 @@
 import usePeopleContainer from './usePeopleContainer';
+import PersonCard from '../../UI/PersonCard/PersonCard';
 
 const PeopleContainer = () => {
-  const {data, loading, page, search} = usePeopleContainer();
-  
+  const { data, loading, page, search } = usePeopleContainer();
+
   return (
     <div>
-      {loading ?
+      {loading || !data ? (
+        <div>Loading...</div>
+      ) : (
         <div>
-          Loading...
+          {data.map(person => (
+            <PersonCard name={person.name} films={person.films} url={person.url} />
+          ))}
         </div>
-        :
-        <div>
-          People Container
-        </div>}
+      )}
     </div>
   );
 };

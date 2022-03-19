@@ -17,7 +17,7 @@ export function* loadPeopleSaga(action: LoadPeopleAction) {
       search
     );
     
-    yield put(loadPeopleSuccess(response.data.results));
+    yield put(loadPeopleSuccess(response.data));
   } catch (error: any) {
     yield put(loadPeopleFailure(error.message));
   }

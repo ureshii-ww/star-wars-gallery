@@ -5,6 +5,9 @@ export default function createInitialStateStub(): RootState {
     people: {
       page: 1,
       search: '',
+      count: 0,
+      next: null,
+      previous: null,
       loading: false,
       error: null,
       data: null,

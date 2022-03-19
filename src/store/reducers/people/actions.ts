@@ -6,6 +6,7 @@ import {
 } from './types';
 import { AppError } from '../../../types/app-error.type';
 import Person from '../../../models/person.model';
+import DataList from '../../../models/data-list.model';
 
 export const loadPeople = (page: number, search: string): LoadPeopleAction => ({
   type: PeopleActionsEnum.LOAD_PEOPLE,
@@ -15,7 +16,7 @@ export const loadPeople = (page: number, search: string): LoadPeopleAction => ({
   },
 });
 
-export const loadPeopleSuccess = (data: Person[]): LoadPeopleSuccessAction => ({
+export const loadPeopleSuccess = (data: DataList<Person>): LoadPeopleSuccessAction => ({
   type: PeopleActionsEnum.LOAD_PEOPLE_SUCCESS,
   payload: data,
 });

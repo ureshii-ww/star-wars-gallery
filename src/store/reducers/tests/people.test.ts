@@ -2,6 +2,7 @@ import peopleReducer, { initialState } from '../people';
 import { PeopleAction } from '../people/types';
 import { loadPeople, loadPeopleFailure, loadPeopleSuccess } from '../people/actions';
 import { personStub } from '../../../tests/stubs/person.stub';
+import createDataListStub from '../../../tests/support/createDataListStub';
 
 describe('people reducer', () => {
   it('returns initial state', () => {
@@ -20,10 +21,14 @@ describe('people reducer', () => {
   });
 
   it('handles the loadPeopleSuccess action', () => {
-    expect(peopleReducer(initialState, loadPeopleSuccess([personStub]))).toEqual({
+    const dataList = createDataListStub(personStub);
+    expect(peopleReducer(initialState, loadPeopleSuccess(dataList))).toEqual({
       ...initialState,
       loading: false,
-      data: [personStub],
+      count: dataList.count,
+      next: dataList.next,
+      previous: dataList.previous,
+      data: dataList.results
     });
   });
 

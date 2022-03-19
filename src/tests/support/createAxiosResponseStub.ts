@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-export default function createAxiosResponseStub(data: any): AxiosResponse {
+export default function createAxiosResponseStub<T>(data: T): AxiosResponse<T> {
   return {
     data,
     config: {},

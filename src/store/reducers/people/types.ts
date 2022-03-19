@@ -1,9 +1,13 @@
 import Person from '../../../models/person.model';
 import { AppError } from '../../../types/app-error.type';
+import DataList from '../../../models/data-list.model';
 
 export interface PeopleState {
   page: number;
   search: string;
+  count: number;
+  next: string | null;
+  previous: string | null;
   loading: boolean;
   error: AppError | null;
   data: Person[] | null;
@@ -22,7 +26,7 @@ export interface LoadPeopleAction{
 
 export interface LoadPeopleSuccessAction {
   type: PeopleActionsEnum.LOAD_PEOPLE_SUCCESS;
-  payload: Person[];
+  payload: DataList<Person>;
 }
 
 export interface LoadPeopleFailureAction {
