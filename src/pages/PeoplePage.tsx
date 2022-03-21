@@ -1,9 +1,9 @@
-import PeopleContainer from '../components/containers/PeopleContainer/PeopleContainer';
+import PeopleList from '../components/containers/PeopleList/PeopleList';
 
 const PeoplePage = () => {
   return (
     <div>
-      <PeopleContainer />
+      <PeopleList />
     </div>
   );
 };

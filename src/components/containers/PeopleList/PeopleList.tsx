@@ -1,9 +1,9 @@
-import usePeopleContainer from './usePeopleContainer';
+import usePeopleList from './usePeopleList';
 import PersonCard from '../../UI/PersonCard/PersonCard';
 import { Fragment } from 'react';
 
-const PeopleContainer = () => {
-  const { data, search, loading, triggerRef, next, handleSearch } = usePeopleContainer();
+const PeopleList = () => {
+  const { data, search, loading, triggerRef, next, handleSearch } = usePeopleList();
 
   return (
     <div>
@@ -36,4 +36,4 @@ const PeopleContainer = () => {
   );
 };
 
-export default PeopleContainer;
+export default PeopleList;

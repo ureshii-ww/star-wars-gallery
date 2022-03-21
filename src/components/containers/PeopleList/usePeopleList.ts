@@ -1,11 +1,11 @@
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import useAppSelector from '../../../hooks/useAppSelector';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { loadPeople, resetPeople, searchPeople } from '../../../store/reducers/people/actions';
 import { peopleStateSelector } from '../../../store/selectors/people.selectors';
 import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
 
-const usePeopleContainer = () => {
+const usePeopleList = () => {
   const dispatch = useAppDispatch();
   const { page, search, data, loading, next } = useAppSelector(peopleStateSelector);
   const { triggerRef, shouldLoad } = useInfiniteScroll();
@@ -27,4 +27,4 @@ const usePeopleContainer = () => {
   return { search, data, loading, triggerRef, next, handleSearch };
 };
 
-export default usePeopleContainer;
+export default usePeopleList;
