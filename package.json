@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
     "redux-saga-test-plan": "^4.0.4",

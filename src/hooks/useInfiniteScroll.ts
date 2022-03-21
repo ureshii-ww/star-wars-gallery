@@ -3,11 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 export default function useInfiniteScroll() {
   const [triggerElement, setTriggerElement] = useState<Element | null>(null);
   const [shouldLoad, setShouldLoad] = useState<boolean>(false);
-
-  const triggerRef = useCallback(element => {
+  
+  const triggerRef = useCallback((element: Element | null) => {
     setTriggerElement(element);
   }, []);
-
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -23,11 +23,12 @@ export default function useInfiniteScroll() {
       observer.observe(triggerElement);
     }
 
+    if (!triggerElement) {
+      setShouldLoad(false);
+    }
+
     return () => {
-      if (triggerElement) {
-        observer.unobserve(triggerElement);
-        setShouldLoad(false);
-      }
+      observer.disconnect();
     };
   }, [triggerElement]);
 
