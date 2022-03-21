@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Person from '../../../models/person.model';
 import { Link } from 'react-router-dom';
+import RouteNames from '../../../routes/route-names.enum';
 
 type PersonCardProps = Pick<Person, 'name' | 'films' | 'url'>;
 
@@ -25,7 +26,7 @@ const PersonCard: FC<PersonCardProps> = ({ name, films, url, ...rest }) => {
         </div>
       </div>
       <div>
-        <Link to={id}>Details</Link>
+        <Link to={`${RouteNames.PERSON_BASE}/${id}`}>Details</Link>
       </div>
     </div>
   );
