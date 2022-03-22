@@ -9,8 +9,7 @@ const PersonPage = () => {
   
   return (
     <div>
-      {/*@TODO избавиться от key*/}
-      <PersonData key={integerId} id={id} />
+      <PersonData id={id} />
       {id && (
         <div>
           {integerId > 1 && <Link to={`${RouteNames.PERSON_BASE}/${integerId - 1}`}>←Prev person</Link>}

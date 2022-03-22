@@ -20,6 +20,7 @@ export default function personReducer(state = initialState, action: PersonAction
     case PersonActionsEnum.LOAD_PERSON_SUCCESS: {
       return {
         ...state,
+        loading: false,
         data: action.payload,
       };
     }
@@ -27,6 +28,7 @@ export default function personReducer(state = initialState, action: PersonAction
     case PersonActionsEnum.LOAD_PERSON_FAILURE: {
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
     }

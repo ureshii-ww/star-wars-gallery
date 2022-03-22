@@ -8,11 +8,11 @@ interface PersonDataProps {
 }
 
 const PersonData: FC<PersonDataProps> = ({id}) => {
-  const { data } = usePersonData(id);
+  const { data, loading } = usePersonData(id);
 
   return (
     <div>
-      {data ? (
+      {data && !loading ? (
         <div>
           <h1>{data.name}</h1>
           <PersonInfo

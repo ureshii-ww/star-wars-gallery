@@ -12,7 +12,7 @@ const usePersonData = (id: string | undefined) => {
     if (id) {
       dispatch(loadPerson(id));
     }
-  }, []);
+  }, [id]);
 
   return {
     data,

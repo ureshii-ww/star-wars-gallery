@@ -4,32 +4,49 @@ import personReducer from '../person';
 import { initialState } from '../person';
 import { loadPerson, loadPersonFailure, loadPersonSuccess } from '../person/actions';
 
-describe('people reducer', () => {
+describe('person reducer', () => {
   it('returns initial state', () => {
     expect(personReducer(undefined, {} as PersonAction)).toEqual({
       ...initialState,
     });
   });
-  
-  it('handles the loadPeople action', () => {
+
+  it('handles the loadPerson action', () => {
     expect(personReducer(initialState, loadPerson('3'))).toEqual({
       ...initialState,
       loading: true,
-      id: '3'
+      id: '3',
     });
   });
-  
-  it('handles the loadPeopleSuccess action', () => {
-    expect(personReducer(initialState, loadPersonSuccess(personStub))).toEqual({
+
+  it('handles the loadPersonSuccess action', () => {
+    expect(
+      personReducer(
+        {
+          ...initialState,
+          loading: true,
+        },
+        loadPersonSuccess(personStub)
+      )
+    ).toEqual({
       ...initialState,
       loading: false,
       data: personStub,
     });
   });
-  
-  it('handles the loadPeopleFailure action', () => {
-    expect(personReducer(initialState, loadPersonFailure('error'))).toEqual({
+
+  it('handles the loadPersonFailure action', () => {
+    expect(
+      personReducer(
+        {
+          ...initialState,
+          loading: true,
+        },
+        loadPersonFailure('error')
+      )
+    ).toEqual({
       ...initialState,
+      loading: false,
       error: 'error',
     });
   });

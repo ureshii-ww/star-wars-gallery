@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter } from 'react-router-dom';
 import PersonCard from './PersonCard';
 import { personStub } from '../../../tests/stubs/person.stub';
+import RouteNames from '../../../routes/route-names.enum';
 
 describe('PersonCard', () => {
   test('with non null data', () => {
@@ -28,7 +29,7 @@ describe('PersonCard', () => {
     const detailsLink = screen.getByText('Details');
     const id = url.replace(/\D/g,'');
     expect(detailsLink).toBeVisible();
-    expect(detailsLink).toHaveAttribute('href', `/${id}`);
+    expect(detailsLink).toHaveAttribute('href', `${RouteNames.PERSON_BASE}/${id}`);
   });
 
   test('with empty films', () => {
@@ -49,6 +50,6 @@ describe('PersonCard', () => {
     const detailsLink = screen.getByText('Details');
     const id = url.replace(/\D/g,'');
     expect(detailsLink).toBeVisible();
-    expect(detailsLink).toHaveAttribute('href', `/${id}`)
+    expect(detailsLink).toHaveAttribute('href', `${RouteNames.PERSON_BASE}/${id}`)
   });
 });
