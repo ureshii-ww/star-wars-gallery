@@ -1,5 +1,5 @@
 import Person from '../../../models/person.model';
-import { AppError } from '../../../types/app-error.type';
+import { AppError } from '../../../models/app-error.type';
 import DataList from '../../../models/data-list.model';
 
 export interface PeopleState {
@@ -33,7 +33,7 @@ export interface LoadPeopleSuccessAction {
 
 export interface LoadPeopleFailureAction {
   type: PeopleActionsEnum.LOAD_PEOPLE_FAILURE;
-  payload: AppError | string;
+  payload: AppError;
 }
 
 export interface ResetPeopleAction {

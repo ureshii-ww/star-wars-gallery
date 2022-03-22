@@ -1,15 +1,20 @@
 import { fork, takeEvery, debounce, call, put } from 'redux-saga/effects';
-import { LoadPeopleAction, PeopleActionsEnum, SearchPeopleAction } from '../../reducers/people/types';
+import {
+  LoadPeopleAction,
+  PeopleActionsEnum,
+  SearchPeopleAction,
+} from '../../reducers/people/types';
 import PeopleService from '../../../services/people.service';
 import { loadPeople, loadPeopleFailure, loadPeopleSuccess } from '../../reducers/people/actions';
 import { initialState } from '../../reducers/people';
+import axios from 'axios';
 
 export function* watchLoadPeople() {
   yield takeEvery(PeopleActionsEnum.LOAD_PEOPLE, loadPeopleSaga);
 }
 
 export function* debounceSearchPeople() {
-  yield debounce(800, PeopleActionsEnum.SEARCH_PEOPLE, searchPeopleSaga)
+  yield debounce(800, PeopleActionsEnum.SEARCH_PEOPLE, searchPeopleSaga);
 }
 
 export function* watchResetPeople() {
@@ -28,7 +33,16 @@ export function* loadPeopleSaga(action: LoadPeopleAction) {
 
     yield put(loadPeopleSuccess(response.data));
   } catch (error: any) {
-    yield put(loadPeopleFailure(error.message));
+    if (axios.isAxiosError(error)) {
+      yield put(
+        loadPeopleFailure(
+          error.response?.status || 500,
+          error.response?.statusText || 'Unknown error'
+        )
+      );
+    } else {
+      yield put(loadPeopleFailure(500, 'Unknown error'));
+    }
   }
 }
 

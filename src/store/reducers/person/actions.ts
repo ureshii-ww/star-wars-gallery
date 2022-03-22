@@ -5,7 +5,6 @@ import {
   PersonActionsEnum,
 } from './types';
 import Person from '../../../models/person.model';
-import { AppError } from '../../../types/app-error.type';
 
 export const loadPerson = (id: string): LoadPersonAction => ({
   type: PersonActionsEnum.LOAD_PERSON,
@@ -19,7 +18,10 @@ export const loadPersonSuccess = (person: Person): LoadPersonSuccessAction => ({
   payload: person,
 });
 
-export const loadPersonFailure = (error: AppError): LoadPersonFailureAction => ({
+export const loadPersonFailure = (status: number, message: string): LoadPersonFailureAction => ({
   type: PersonActionsEnum.LOAD_PERSON_FAILURE,
-  payload: error,
+  payload: {
+    status,
+    message
+  },
 });

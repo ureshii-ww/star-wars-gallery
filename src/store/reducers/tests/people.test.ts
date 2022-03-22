@@ -9,6 +9,7 @@ import {
 } from '../people/actions';
 import { personStub } from '../../../tests/stubs/person.stub';
 import createDataListStub from '../../../tests/support/createDataListStub';
+import { appErrorStub } from '../../../tests/stubs/app-error.stub';
 
 describe('people reducer', () => {
   it('returns initial state', () => {
@@ -55,9 +56,12 @@ describe('people reducer', () => {
   });
 
   it('handles the loadPeopleFailure action', () => {
-    expect(peopleReducer(initialState, loadPeopleFailure('error'))).toEqual({
+    expect(peopleReducer(initialState, loadPeopleFailure(500, 'Stub error'))).toEqual({
       ...initialState,
-      error: 'error',
+      error: {
+        status: 500,
+        message: 'Stub error'
+      },
     });
   });
 
@@ -81,7 +85,7 @@ describe('people reducer', () => {
       search: 'search',
       page: 10,
       loading: true,
-      error: 'error',
+      error: appErrorStub,
       data: [personStub],
     };
     expect(peopleReducer(state, resetPeople())).toEqual({

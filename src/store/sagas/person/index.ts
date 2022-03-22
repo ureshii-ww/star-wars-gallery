@@ -2,6 +2,7 @@ import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { LoadPersonAction, PersonActionsEnum } from '../../reducers/person/types';
 import PersonService from '../../../services/person.service';
 import { loadPersonFailure, loadPersonSuccess } from '../../reducers/person/actions';
+import axios from 'axios';
 
 export function* watchLoadPerson() {
   yield takeEvery(PersonActionsEnum.LOAD_PERSON, loadPersonSaga);
@@ -17,7 +18,16 @@ export function* loadPersonSaga(action: LoadPersonAction) {
     );
     yield put(loadPersonSuccess(response.data));
   } catch (error: any) {
-    yield put(loadPersonFailure(error.message))
+    if (axios.isAxiosError(error)) {
+      yield put(
+        loadPersonFailure(
+          error.response?.status || 500,
+          error.response?.statusText || 'Unknown error'
+        )
+      );
+    } else {
+      yield put(loadPersonFailure(500, 'Unknown error'));
+    }
   }
 }
 

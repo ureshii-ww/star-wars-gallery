@@ -1,5 +1,5 @@
 import Person from '../../../models/person.model';
-import { AppError } from '../../../types/app-error.type';
+import { AppError } from '../../../models/app-error.type';
 
 export interface PersonState {
   loading: boolean;
@@ -28,7 +28,7 @@ export interface LoadPersonSuccessAction {
 
 export interface LoadPersonFailureAction {
   type: PersonActionsEnum.LOAD_PERSON_FAILURE;
-  payload: AppError | string;
+  payload: AppError;
 }
 
 export type PersonAction = LoadPersonAction | LoadPersonSuccessAction | LoadPersonFailureAction;

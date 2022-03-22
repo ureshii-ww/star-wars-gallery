@@ -6,7 +6,6 @@ import {
   ResetPeopleAction,
   SearchPeopleAction,
 } from './types';
-import { AppError } from '../../../types/app-error.type';
 import Person from '../../../models/person.model';
 import DataList from '../../../models/data-list.model';
 
@@ -23,9 +22,12 @@ export const loadPeopleSuccess = (data: DataList<Person>): LoadPeopleSuccessActi
   payload: data,
 });
 
-export const loadPeopleFailure = (error: AppError): LoadPeopleFailureAction => ({
+export const loadPeopleFailure = (status: number, message: string): LoadPeopleFailureAction => ({
   type: PeopleActionsEnum.LOAD_PEOPLE_FAILURE,
-  payload: error,
+  payload: {
+    message,
+    status
+  },
 });
 
 export const searchPeople = (search: string): SearchPeopleAction => ({

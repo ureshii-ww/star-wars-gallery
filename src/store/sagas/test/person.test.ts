@@ -61,7 +61,10 @@ describe('loadPersonSaga', () => {
         ...initialState,
         person: {
           ...initialState.person,
-          error: 'error',
+          error: {
+            status: 500,
+            message: 'Unknown error',
+          },
         },
       })
       .run();

@@ -3,6 +3,7 @@ import { PersonAction } from '../person/types';
 import personReducer from '../person';
 import { initialState } from '../person';
 import { loadPerson, loadPersonFailure, loadPersonSuccess } from '../person/actions';
+import { appErrorStub } from '../../../tests/stubs/app-error.stub';
 
 describe('person reducer', () => {
   it('returns initial state', () => {
@@ -42,12 +43,12 @@ describe('person reducer', () => {
           ...initialState,
           loading: true,
         },
-        loadPersonFailure('error')
+        loadPersonFailure(appErrorStub.status, appErrorStub.message)
       )
     ).toEqual({
       ...initialState,
       loading: false,
-      error: 'error',
+      error: appErrorStub,
     });
   });
 });

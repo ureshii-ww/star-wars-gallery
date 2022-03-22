@@ -104,7 +104,10 @@ describe('loadPeopleSaga', () => {
         ...initialStateStub,
         people: {
           ...initialStateStub.people,
-          error: 'error',
+          error: {
+            status: 500,
+            message: 'Unknown error',
+          },
         },
       })
       .run();
