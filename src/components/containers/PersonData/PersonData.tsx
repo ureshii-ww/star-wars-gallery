@@ -22,6 +22,7 @@ const PersonData: FC<PersonDataProps> = ({ id }) => {
             hair_color={data.hair_color}
             height={data.height}
             mass={data.mass}
+            skin_color={data.skin_color}
           />
           <PersonDataCard title="Species" dataArray={data.species} />
           <PersonDataCard title="Homeworld:" data={data.homeworld} />
@@ -30,7 +31,7 @@ const PersonData: FC<PersonDataProps> = ({ id }) => {
           <PersonDataCard title="Vehicles" dataArray={data.vehicles} />
         </div>
       )}
-      {((!data && !error) || loading) && <div>Loading...</div>}
+      {((!data && !error) || loading) && <div data-testid="loader">Loading...</div>}
       {!loading && error?.status === 404 && <div>Person with such id doesn't exist</div>}
     </div>
   );

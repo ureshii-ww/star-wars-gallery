@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import Person from '../../../models/person.model';
 
-type PersonInfoProps = Pick<Person, 'birth_year' | 'gender' | 'height' | 'mass' | 'eye_color' | 'hair_color'>
+type PersonInfoProps = Pick<Person, 'birth_year' | 'gender' | 'height' | 'mass' | 'eye_color' | 'hair_color' | 'skin_color'>
 
 const PersonInfo: FC<PersonInfoProps> = (props) => {
-  const {birth_year, gender, eye_color, hair_color, height, mass} = props;
+  const {birth_year, gender, eye_color, hair_color, height, mass, skin_color} = props;
   
   return (
     <section>
@@ -33,6 +33,10 @@ const PersonInfo: FC<PersonInfoProps> = (props) => {
         <div>
           <h3>Hair color:</h3>
           <p>{hair_color}</p>
+        </div>
+        <div>
+          <h3>Skin color:</h3>
+          <p>{skin_color}</p>
         </div>
       </div>
     </section>
