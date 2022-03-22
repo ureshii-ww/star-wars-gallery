@@ -7,12 +7,12 @@ interface PersonDataProps {
   id: string | undefined;
 }
 
-const PersonData: FC<PersonDataProps> = ({id}) => {
-  const { data, loading } = usePersonData(id);
+const PersonData: FC<PersonDataProps> = ({ id }) => {
+  const { data, loading, error } = usePersonData(id);
 
   return (
     <div>
-      {data && !loading ? (
+      {data && !loading && !error && (
         <div>
           <h1>{data.name}</h1>
           <PersonInfo
@@ -29,9 +29,9 @@ const PersonData: FC<PersonDataProps> = ({id}) => {
           <PersonDataCard title="Starships:" dataArray={data.starships} />
           <PersonDataCard title="Vehicles" dataArray={data.vehicles} />
         </div>
-      ) : (
-        <div>Loading...</div>
       )}
+      {((!data && !error) || loading) && <div>Loading...</div>}
+      {!loading && error?.status === 404 && <div>Person with such id doesn't exist</div>}
     </div>
   );
 };

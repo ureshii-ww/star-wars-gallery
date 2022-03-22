@@ -22,7 +22,7 @@ export function* loadPersonSaga(action: LoadPersonAction) {
       yield put(
         loadPersonFailure(
           error.response?.status || 500,
-          error.response?.statusText || 'Unknown error'
+          error.response?.data?.detail || 'Unknown error'
         )
       );
     } else {

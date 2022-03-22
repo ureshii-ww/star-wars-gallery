@@ -13,6 +13,7 @@ export default function personReducer(state = initialState, action: PersonAction
       return {
         ...state,
         loading: true,
+        error: null,
         id: action.payload.id
       };
     }

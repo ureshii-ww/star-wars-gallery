@@ -6,7 +6,7 @@ import { loadPerson } from '../../../store/reducers/person/actions';
 
 const usePersonData = (id: string | undefined) => {
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector(personStateSelector);
+  const { data, loading, error } = useAppSelector(personStateSelector);
 
   useEffect(() => {
     if (id) {
@@ -17,6 +17,7 @@ const usePersonData = (id: string | undefined) => {
   return {
     data,
     loading,
+    error,
   };
 };
 

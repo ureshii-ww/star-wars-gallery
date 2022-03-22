@@ -37,7 +37,7 @@ export function* loadPeopleSaga(action: LoadPeopleAction) {
       yield put(
         loadPeopleFailure(
           error.response?.status || 500,
-          error.response?.statusText || 'Unknown error'
+          error.response?.data?.detail || 'Unknown error'
         )
       );
     } else {

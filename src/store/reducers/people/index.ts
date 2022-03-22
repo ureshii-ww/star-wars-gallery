@@ -18,6 +18,7 @@ export default function peopleReducer(state = initialState, action: PeopleAction
       return {
         ...state,
         loading: true,
+        error: null,
         page,
         search,
       };
