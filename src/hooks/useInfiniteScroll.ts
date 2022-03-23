@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function useInfiniteScroll() {
+export function useInfiniteScroll() {
   const [triggerElement, setTriggerElement] = useState<Element | null>(null);
   const [shouldLoad, setShouldLoad] = useState<boolean>(false);
   

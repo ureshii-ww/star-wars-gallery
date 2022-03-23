@@ -3,7 +3,7 @@ import useAppSelector from '../../../hooks/useAppSelector';
 import { ChangeEvent, useEffect } from 'react';
 import { loadPeople, resetPeople, searchPeople } from '../../../store/reducers/people/actions';
 import { peopleStateSelector } from '../../../store/selectors/people.selectors';
-import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 
 const usePeopleList = () => {
   const dispatch = useAppDispatch();

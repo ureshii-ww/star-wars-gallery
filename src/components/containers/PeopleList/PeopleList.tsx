@@ -11,7 +11,7 @@ const PeopleList = () => {
         <input type="text" placeholder="Поиск" value={search} onChange={handleSearch} />
       </div>
       {!data ? (
-        <div>Loading...</div>
+        <div data-testid="no-data-loader">Loading...</div>
       ) : (
         <Fragment>
           <div>
@@ -27,8 +27,8 @@ const PeopleList = () => {
               : `There're no people for your request`}
           </div>
           <div>
-            {next && !loading && <div ref={triggerRef} />}
-            {next && <div>Loader...</div>}
+            {next && !loading && <div data-testid="ref-element" ref={triggerRef} />}
+            {next && <div data-testid="data-loader">Loader...</div>}
           </div>
         </Fragment>
       )}
