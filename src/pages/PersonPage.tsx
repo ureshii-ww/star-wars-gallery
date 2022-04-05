@@ -8,14 +8,14 @@ const PersonPage = () => {
   const integerId = id ? parseInt(id) : 1;
   
   return (
-    <div>
-      <PersonData id={id} />
+    <div className="max-w-screen-sm min-h-personPage mx-auto p-8 bg-zinc-600">
       {id && (
-        <div>
-          {integerId > 1 && <Link to={`${RouteNames.PERSON_BASE}/${integerId - 1}`}>←Prev person</Link>}
-          <Link to={`${RouteNames.PERSON_BASE}/${integerId + 1}`}>Next person→</Link>
+        <div className="mb-6 flex justify-between">
+          {integerId > 1 && <Link className="text-lg text-neutral-100 hover:underline" to={`${RouteNames.PERSON_BASE}/${integerId - 1}`}>←Prev person</Link>}
+          <Link className="text-lg text-neutral-100 hover:underline" to={`${RouteNames.PERSON_BASE}/${integerId + 1}`}>Next person→</Link>
         </div>
       )}
+      <PersonData id={id} />
     </div>
   );
 };

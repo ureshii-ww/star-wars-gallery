@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Person from '../../../models/person.model';
+import { styles } from './styles';
 
 export type PersonInfoProps = Pick<
   Person,
@@ -8,16 +9,15 @@ export type PersonInfoProps = Pick<
 
 const PersonInfo: FC<PersonInfoProps> = props => {
   return (
-    <section>
-      <h2>Info:</h2>
-      <div>
+    <section className={styles.mainContainer}>
+      <div className={styles.sectionsGrid}>
         {Object.keys(props).map(key => {
           if (key !== 'children') {
             const value = props[key as keyof typeof props];
             return (
               <div key={`person-info-${key}`}>
-                <h3>{key.replace('_', ' ')}</h3>
-                <p>{value}</p>
+                <h3 className={styles.sectionTitle}>{key.replace('_', ' ')}</h3>
+                <p className={styles.sectionValue}>{value}</p>
               </div>
             );
           }

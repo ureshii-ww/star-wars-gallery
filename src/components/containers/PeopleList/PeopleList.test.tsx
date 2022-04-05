@@ -74,7 +74,7 @@ describe('PeopleList', () => {
       mockUseInfiniteScroll.mockReturnValue({ triggerRef: jest.fn(), shouldLoad: false });
       const { getByPlaceholderText } = renderWithRouterAndRedux(<PeopleList />, store);
 
-      const searchField = getByPlaceholderText('Поиск');
+      const searchField = getByPlaceholderText('Search');
       expect(store.dispatch).toBeCalledWith(resetPeople());
       expect(searchField).toBeVisible();
       expect(searchField).toHaveValue('');
